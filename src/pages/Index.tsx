@@ -1,9 +1,7 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
-const PHOTO_URL = "https://cdn.poehali.dev/projects/08649f27-79b2-4bef-bf78-01ae14f46376/bucket/d2d9ff5b-46e0-441e-89a3-c776c5f1268a.jpg";
-const LOGO_BEIGE = "https://cdn.poehali.dev/projects/08649f27-79b2-4bef-bf78-01ae14f46376/bucket/24f03622-665c-47a3-a220-e7b62172bf7f.jpg";
-const LOGO_GREEN = "https://cdn.poehali.dev/projects/08649f27-79b2-4bef-bf78-01ae14f46376/bucket/01e6b291-ae27-4ce6-9304-018c04a38edb.jpg";
+
 
 const C = {
   green: "#2C3E35",
@@ -42,8 +40,8 @@ const Index = () => {
 
       {/* NAV */}
       <nav style={{ background: `${C.beigeLight}ee`, borderBottom: `1px solid ${C.beigeDark}` }} className="fixed top-0 left-0 right-0 z-50 px-8 py-5 flex items-center justify-between backdrop-blur-sm">
-        <a href="#hero">
-          <img src={LOGO_BEIGE} alt="KSolving" className="h-8 object-contain" />
+        <a href="#hero" style={{ color: C.green, ...serif }} className="text-xl tracking-[0.2em] font-semibold">
+          KSOLVING
         </a>
         <div className="hidden md:flex gap-10">
           {navLinks.map((l) => (
@@ -83,9 +81,9 @@ const Index = () => {
           </div>
         </div>
 
-        <div className="container mx-auto px-8 pb-0 grid md:grid-cols-2 gap-0 items-end">
+        <div className="container mx-auto px-8 pb-0 flex items-end">
           {/* Text */}
-          <div className="order-2 md:order-1 pb-20 md:pb-28">
+          <div className="pb-20 md:pb-28 max-w-2xl">
             <div style={{ color: C.beigeDark, ...sans }} className="text-xs tracking-[0.3em] uppercase mb-8 opacity-60">
               Бизнес-консультант · Стратег · Маркетолог
             </div>
@@ -120,21 +118,6 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Photo */}
-          <div className="order-1 md:order-2 relative flex justify-end items-end">
-            <div className="relative w-full max-w-sm md:max-w-md">
-              <img
-                src={PHOTO_URL}
-                alt="Ксения Чеканова"
-                className="w-full object-cover object-top"
-                style={{ maxHeight: "90vh", minHeight: "500px" }}
-              />
-              <div style={{ background: `${C.beige}15`, border: `1px solid ${C.beige}20` }} className="absolute bottom-8 left-0 -translate-x-6 rounded-none px-6 py-4 backdrop-blur-sm">
-                <div style={{ color: C.beigeDark, ...sans }} className="text-xs tracking-widest uppercase opacity-60 mb-1">Консультация</div>
-                <div style={{ color: C.beige, ...serif }} className="text-lg font-light">Свободна сейчас</div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -407,7 +390,7 @@ const Index = () => {
       {/* FOOTER */}
       <footer style={{ background: C.green, borderTop: `1px solid ${C.greenMid}` }} className="py-8">
         <div className="container mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <img src={LOGO_GREEN} alt="KSolving" className="h-6 object-contain" />
+          <span style={{ color: C.beige, ...serif }} className="text-base tracking-[0.2em] font-semibold opacity-60">KSOLVING</span>
           <span style={{ color: C.beigeDark, ...sans }} className="text-xs tracking-widest opacity-40">
             © 2024 Ксения Чеканова · Все права защищены
           </span>
