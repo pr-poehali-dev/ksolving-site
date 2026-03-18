@@ -1,8 +1,23 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
-const PHOTO_URL =
-  "https://cdn.poehali.dev/projects/08649f27-79b2-4bef-bf78-01ae14f46376/files/f1d13f62-7fcd-4d5e-9d05-2c418db4db90.jpg";
+const PHOTO_URL = "https://cdn.poehali.dev/projects/08649f27-79b2-4bef-bf78-01ae14f46376/bucket/d2d9ff5b-46e0-441e-89a3-c776c5f1268a.jpg";
+const LOGO_BEIGE = "https://cdn.poehali.dev/projects/08649f27-79b2-4bef-bf78-01ae14f46376/bucket/24f03622-665c-47a3-a220-e7b62172bf7f.jpg";
+const LOGO_GREEN = "https://cdn.poehali.dev/projects/08649f27-79b2-4bef-bf78-01ae14f46376/bucket/01e6b291-ae27-4ce6-9304-018c04a38edb.jpg";
+
+const C = {
+  green: "#2C3E35",
+  greenLight: "#3a5147",
+  greenMid: "#4a6358",
+  beige: "#E8E2D9",
+  beigeLight: "#F2EDE8",
+  beigeDark: "#D4CCC0",
+  text: "#2C3E35",
+  textMuted: "#6b7c74",
+};
+
+const serif = { fontFamily: "'Cormorant Garamond', serif" };
+const sans = { fontFamily: "'Raleway', sans-serif" };
 
 const Index = () => {
   const [formData, setFormData] = useState({ name: "", phone: "", message: "" });
@@ -23,153 +38,152 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] text-white overflow-x-hidden" style={{ fontFamily: "'Golos Text', sans-serif" }}>
+    <div style={{ background: C.beigeLight, color: C.green, ...sans }} className="min-h-screen overflow-x-hidden">
+
       {/* NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-4 flex items-center justify-between backdrop-blur-md bg-[#0a0a0f]/80 border-b border-white/5">
-        <a href="#hero" style={{ fontFamily: "'Oswald', sans-serif" }} className="text-xl tracking-widest text-white">
-          K<span className="text-[#ff6b35]">SOLVING</span>
+      <nav style={{ background: `${C.beigeLight}ee`, borderBottom: `1px solid ${C.beigeDark}` }} className="fixed top-0 left-0 right-0 z-50 px-8 py-5 flex items-center justify-between backdrop-blur-sm">
+        <a href="#hero">
+          <img src={LOGO_BEIGE} alt="KSolving" className="h-8 object-contain" />
         </a>
-        <div className="hidden md:flex gap-8">
+        <div className="hidden md:flex gap-10">
           {navLinks.map((l) => (
-            <a key={l.href} href={l.href} className="text-sm text-white/60 hover:text-white transition-colors duration-200">
+            <a key={l.href} href={l.href} style={{ color: C.textMuted, ...sans }} className="text-sm tracking-widest uppercase hover:opacity-100 transition-opacity font-medium" >
               {l.label}
             </a>
           ))}
         </div>
-        <a href="#contact" className="hidden md:block px-5 py-2 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#ff6b35] text-white text-sm font-medium hover:opacity-90 transition-opacity">
+        <a href="#contact" style={{ background: C.green, color: C.beige, ...sans }} className="hidden md:block px-6 py-2.5 text-sm tracking-widest uppercase font-medium hover:opacity-90 transition-opacity">
           Записаться
         </a>
-        <button className="md:hidden text-white" onClick={() => setMenuOpen(!menuOpen)}>
-          <Icon name={menuOpen ? "X" : "Menu"} size={24} />
+        <button className="md:hidden" style={{ color: C.green }} onClick={() => setMenuOpen(!menuOpen)}>
+          <Icon name={menuOpen ? "X" : "Menu"} size={22} />
         </button>
       </nav>
 
       {/* MOBILE MENU */}
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#0a0a0f] flex flex-col items-center justify-center gap-8">
+        <div style={{ background: C.beigeLight }} className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-10">
           {navLinks.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)} style={{ fontFamily: "'Oswald', sans-serif" }} className="text-3xl tracking-widest text-white hover:text-[#ff6b35] transition-colors">
+            <a key={l.href} href={l.href} onClick={() => setMenuOpen(false)} style={{ color: C.green, ...serif }} className="text-4xl font-light tracking-widest">
               {l.label}
             </a>
           ))}
-          <a href="#contact" onClick={() => setMenuOpen(false)} className="mt-4 px-8 py-3 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#ff6b35] text-white font-medium">
+          <a href="#contact" onClick={() => setMenuOpen(false)} style={{ background: C.green, color: C.beige }} className="mt-4 px-10 py-3 text-sm tracking-widest uppercase font-medium">
             Записаться
           </a>
         </div>
       )}
 
       {/* HERO */}
-      <section id="hero" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-        <div className="absolute top-[-200px] left-[-200px] w-[600px] h-[600px] rounded-full bg-[#7c3aed]/20 blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[-100px] right-[-100px] w-[500px] h-[500px] rounded-full bg-[#ff6b35]/15 blur-[100px] pointer-events-none" />
-        <div className="absolute top-1/3 left-1/2 w-[300px] h-[300px] rounded-full bg-[#06b6d4]/10 blur-[80px] pointer-events-none" />
+      <section id="hero" style={{ background: C.green }} className="relative min-h-screen flex items-end overflow-hidden pt-24">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div style={{ background: `radial-gradient(ellipse at 70% 50%, ${C.greenMid}80 0%, transparent 65%)` }} className="absolute inset-0" />
+          <div style={{ color: C.beige, opacity: 0.04, ...serif }} className="absolute top-20 right-10 text-[20rem] font-bold leading-none select-none pointer-events-none hidden lg:block">
+            KS
+          </div>
+        </div>
 
-        <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-          <div className="order-2 md:order-1">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#7c3aed]/40 bg-[#7c3aed]/10 text-[#a78bfa] text-sm mb-8">
-              <span className="w-2 h-2 rounded-full bg-[#a78bfa] animate-pulse" />
+        <div className="container mx-auto px-8 pb-0 grid md:grid-cols-2 gap-0 items-end">
+          {/* Text */}
+          <div className="order-2 md:order-1 pb-20 md:pb-28">
+            <div style={{ color: C.beigeDark, ...sans }} className="text-xs tracking-[0.3em] uppercase mb-8 opacity-60">
               Бизнес-консультант · Стратег · Маркетолог
             </div>
-            <h1 style={{ fontFamily: "'Oswald', sans-serif" }} className="text-5xl md:text-7xl font-bold leading-[0.95] tracking-tight mb-6">
-              СТРОЮ{" "}
-              <span className="bg-gradient-to-r from-[#7c3aed] via-[#a855f7] to-[#ff6b35] bg-clip-text text-transparent">
-                СИСТЕМЫ,
-              </span>
-              <br />
-              КОТОРЫЕ{" "}
-              <span className="relative inline-block">
-                РАСТУТ
-                <svg className="absolute -bottom-2 left-0 w-full" height="6" viewBox="0 0 100 6" preserveAspectRatio="none">
-                  <path d="M0 5 Q50 0 100 5" stroke="#ff6b35" strokeWidth="2" fill="none" />
-                </svg>
-              </span>
+            <h1 style={{ color: C.beige, ...serif }} className="text-6xl md:text-8xl font-light leading-[0.9] mb-8">
+              Строю<br />
+              <em className="not-italic font-semibold">системы,</em><br />
+              <span style={{ color: C.beigeDark }} className="text-5xl md:text-6xl font-light">которые растут</span>
             </h1>
-            <p className="text-lg text-white/60 leading-relaxed mb-10 max-w-md">
-              Помогаю предпринимателям выстраивать бизнес-стратегии, оптимизировать
-              процессы и масштабировать маркетинг — без хаоса и потери денег.
+            <p style={{ color: C.beigeDark, ...sans }} className="text-base leading-relaxed mb-10 max-w-md font-light opacity-80">
+              Помогаю предпринимателям выстраивать бизнес-стратегии, оптимизировать процессы и масштабировать маркетинг — осознанно и системно.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a href="#contact" className="px-8 py-4 rounded-full bg-gradient-to-r from-[#7c3aed] to-[#ff6b35] text-white font-semibold text-base hover:opacity-90 transition-all hover:scale-105 shadow-lg shadow-[#7c3aed]/30">
+              <a href="#contact" style={{ background: C.beige, color: C.green, ...sans }} className="px-8 py-4 text-sm tracking-widest uppercase font-medium hover:opacity-90 transition-opacity">
                 Получить консультацию
               </a>
-              <a href="#cases" className="px-8 py-4 rounded-full border border-white/20 text-white font-semibold text-base hover:border-white/50 transition-all hover:scale-105">
-                Смотреть кейсы
+              <a href="#cases" style={{ border: `1px solid ${C.beigeDark}50`, color: C.beige, ...sans }} className="px-8 py-4 text-sm tracking-widest uppercase font-medium hover:border-[#E8E2D9] transition-colors">
+                Кейсы
               </a>
             </div>
 
-            <div className="flex gap-8 mt-14">
+            <div className="flex gap-12 mt-16">
               {[
                 { num: "120+", label: "Клиентов" },
                 { num: "5 лет", label: "Опыта" },
                 { num: "3×", label: "Средний рост" },
               ].map((s) => (
                 <div key={s.label}>
-                  <div style={{ fontFamily: "'Oswald', sans-serif" }} className="text-3xl font-bold bg-gradient-to-r from-[#a78bfa] to-[#ff6b35] bg-clip-text text-transparent">
-                    {s.num}
-                  </div>
-                  <div className="text-sm text-white/40">{s.label}</div>
+                  <div style={{ color: C.beige, ...serif }} className="text-4xl font-light">{s.num}</div>
+                  <div style={{ color: C.beigeDark, ...sans }} className="text-xs tracking-widest uppercase mt-1 opacity-60">{s.label}</div>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="order-1 md:order-2 relative flex justify-center">
-            <div className="relative w-72 h-72 md:w-96 md:h-96">
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#7c3aed] to-[#ff6b35] blur-2xl opacity-40 scale-105" />
-              <img src={PHOTO_URL} alt="Ксения Чеканова" className="relative z-10 w-full h-full object-cover rounded-3xl border border-white/10" />
-              <div className="absolute -bottom-4 -right-4 z-20 bg-[#0a0a0f] border border-white/10 rounded-2xl px-5 py-3 backdrop-blur-sm">
-                <div className="text-xs text-white/40 mb-1">Следующая консультация</div>
-                <div className="text-sm font-semibold text-white">Свободна сейчас</div>
-                <div className="flex gap-1 mt-1">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-[#ff6b35] text-xs">★</span>
-                  ))}
-                </div>
+          {/* Photo */}
+          <div className="order-1 md:order-2 relative flex justify-end items-end">
+            <div className="relative w-full max-w-sm md:max-w-md">
+              <img
+                src={PHOTO_URL}
+                alt="Ксения Чеканова"
+                className="w-full object-cover object-top"
+                style={{ maxHeight: "90vh", minHeight: "500px" }}
+              />
+              <div style={{ background: `${C.beige}15`, border: `1px solid ${C.beige}20` }} className="absolute bottom-8 left-0 -translate-x-6 rounded-none px-6 py-4 backdrop-blur-sm">
+                <div style={{ color: C.beigeDark, ...sans }} className="text-xs tracking-widest uppercase opacity-60 mb-1">Консультация</div>
+                <div style={{ color: C.beige, ...serif }} className="text-lg font-light">Свободна сейчас</div>
               </div>
             </div>
           </div>
         </div>
-
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30">
-          <span className="text-xs tracking-widest">SCROLL</span>
-          <div className="w-px h-10 bg-gradient-to-b from-white/30 to-transparent" />
-        </div>
       </section>
 
-      {/* ABOUT */}
-      <section id="about" className="py-28 relative overflow-hidden">
-        <div className="absolute right-0 top-0 w-[400px] h-[400px] rounded-full bg-[#7c3aed]/10 blur-[100px] pointer-events-none" />
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-px bg-[#ff6b35]" />
-              <span className="text-[#ff6b35] text-sm tracking-widest font-medium uppercase">Обо мне</span>
-            </div>
-            <h2 style={{ fontFamily: "'Oswald', sans-serif" }} className="text-4xl md:text-6xl font-bold mb-12 leading-tight">
-              КСЕНИЯ <span className="text-white/20">ЧЕКАНОВА</span>
-              <br />
-              <span className="bg-gradient-to-r from-[#7c3aed] to-[#ff6b35] bg-clip-text text-transparent">KSolving</span>
-            </h2>
+      {/* DIVIDER */}
+      <div style={{ background: C.beige, height: "2px", opacity: 0.3 }} />
 
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div className="space-y-6 text-white/70 text-lg leading-relaxed">
-                <p>Я помогаю собственникам бизнеса выйти из операционного хаоса и построить систему, которая работает без постоянного личного участия.</p>
-                <p>Специализируюсь на бизнес-стратегиях, выстраивании бизнес-процессов и маркетинге — комплексно и под ключ.</p>
-                <p>За 5 лет работы помогла более 120 компаниям трансформировать хаотичный бизнес в управляемую и прибыльную систему.</p>
+      {/* ABOUT */}
+      <section id="about" style={{ background: C.beigeLight }} className="py-28 relative overflow-hidden">
+        <div className="container mx-auto px-8">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex items-center gap-4 mb-10">
+              <div style={{ width: 40, height: 1, background: C.greenMid }} />
+              <span style={{ color: C.textMuted, ...sans }} className="text-xs tracking-[0.3em] uppercase">Обо мне</span>
+            </div>
+
+            <div className="grid md:grid-cols-5 gap-16 items-start">
+              <div className="md:col-span-3">
+                <h2 style={{ color: C.green, ...serif }} className="text-5xl md:text-7xl font-light leading-tight mb-8">
+                  Ксения<br />
+                  <em className="not-italic font-semibold">Чеканова</em>
+                </h2>
+                <div className="space-y-5" style={{ color: C.textMuted, ...sans }}>
+                  <p className="text-base leading-relaxed font-light">
+                    Я помогаю собственникам бизнеса выйти из операционного хаоса и построить систему, которая работает без постоянного личного участия.
+                  </p>
+                  <p className="text-base leading-relaxed font-light">
+                    Специализируюсь на бизнес-стратегиях, выстраивании бизнес-процессов и маркетинге — комплексно и под ключ.
+                  </p>
+                  <p className="text-base leading-relaxed font-light">
+                    За 5 лет работы помогла более 120 компаниям трансформировать хаотичный бизнес в управляемую и прибыльную систему.
+                  </p>
+                </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
+
+              <div className="md:col-span-2 grid grid-cols-1 gap-4">
                 {[
-                  { icon: "Target", label: "Бизнес-стратегия", desc: "Чёткий план роста" },
-                  { icon: "GitBranch", label: "Бизнес-процессы", desc: "Порядок в операциях" },
+                  { icon: "Target", label: "Бизнес-стратегия", desc: "Чёткий план роста на 6–24 месяца" },
+                  { icon: "GitBranch", label: "Бизнес-процессы", desc: "Порядок и системность в операциях" },
                   { icon: "TrendingUp", label: "Маркетинг", desc: "Системный поток клиентов" },
-                  { icon: "Zap", label: "Результат", desc: "Рост без хаоса" },
+                  { icon: "Zap", label: "Результат", desc: "Рост без хаоса и выгорания" },
                 ].map((item) => (
-                  <div key={item.label} className="p-5 rounded-2xl border border-white/10 bg-white/5 hover:border-[#7c3aed]/50 transition-colors group">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#7c3aed]/20 to-[#ff6b35]/20 flex items-center justify-center mb-3 group-hover:from-[#7c3aed]/40 group-hover:to-[#ff6b35]/40 transition-colors">
-                      <Icon name={item.icon} size={18} className="text-[#a78bfa]" />
+                  <div key={item.label} style={{ borderBottom: `1px solid ${C.beigeDark}` }} className="py-4 flex items-center gap-4 group hover:opacity-100 transition-opacity cursor-default">
+                    <div style={{ color: C.greenMid }}>
+                      <Icon name={item.icon} size={16} />
                     </div>
-                    <div className="font-semibold text-sm text-white mb-1">{item.label}</div>
-                    <div className="text-xs text-white/40">{item.desc}</div>
+                    <div>
+                      <div style={{ color: C.green, ...sans }} className="text-sm font-medium tracking-wide">{item.label}</div>
+                      <div style={{ color: C.textMuted, ...sans }} className="text-xs mt-0.5 font-light">{item.desc}</div>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -179,50 +193,46 @@ const Index = () => {
       </section>
 
       {/* SERVICES */}
-      <section id="services" className="py-28 relative overflow-hidden">
-        <div className="absolute left-0 bottom-0 w-[500px] h-[500px] rounded-full bg-[#ff6b35]/10 blur-[120px] pointer-events-none" />
-        <div className="container mx-auto px-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-px bg-[#7c3aed]" />
-            <span className="text-[#a78bfa] text-sm tracking-widest font-medium uppercase">Услуги</span>
+      <section id="services" style={{ background: C.green }} className="py-28 relative overflow-hidden">
+        <div className="container mx-auto px-8">
+          <div className="flex items-center gap-4 mb-10">
+            <div style={{ width: 40, height: 1, background: C.beigeDark }} />
+            <span style={{ color: C.beigeDark, ...sans }} className="text-xs tracking-[0.3em] uppercase opacity-60">Услуги</span>
           </div>
-          <h2 style={{ fontFamily: "'Oswald', sans-serif" }} className="text-4xl md:text-5xl font-bold mb-16 max-w-xl leading-tight">
-            ЧЕМ Я{" "}
-            <span className="bg-gradient-to-r from-[#7c3aed] to-[#ff6b35] bg-clip-text text-transparent">МОГУ ПОМОЧЬ</span>
+          <h2 style={{ color: C.beige, ...serif }} className="text-5xl md:text-6xl font-light mb-16 leading-tight">
+            Чем я могу<br /><em className="not-italic font-semibold">помочь</em>
           </h2>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-px" style={{ background: `${C.beigeDark}20` }}>
             {[
               {
-                num: "01", icon: "Map", title: "Бизнес-стратегия",
+                num: "I", icon: "Map", title: "Бизнес-стратегия",
                 desc: "Разрабатываю стратегию роста: анализ рынка, конкурентов, точек роста. Создаю дорожную карту развития компании на 6–24 месяца.",
                 tags: ["Анализ рынка", "Дорожная карта", "KPI"],
-                color: "from-[#7c3aed] to-[#a855f7]",
               },
               {
-                num: "02", icon: "Workflow", title: "Бизнес-процессы",
+                num: "II", icon: "Workflow", title: "Бизнес-процессы",
                 desc: "Выстраиваю и оптимизирую внутренние процессы: найм, продажи, операции. Внедряю системы, которые работают без вашего участия.",
                 tags: ["Регламенты", "Автоматизация", "Найм"],
-                color: "from-[#a855f7] to-[#ec4899]",
               },
               {
-                num: "03", icon: "Megaphone", title: "Маркетинг",
+                num: "III", icon: "Megaphone", title: "Маркетинг",
                 desc: "Создаю систему привлечения клиентов: позиционирование, каналы, воронки продаж. От стратегии до реализации.",
                 tags: ["Позиционирование", "Воронки", "Реклама"],
-                color: "from-[#ff6b35] to-[#f97316]",
               },
             ].map((s) => (
-              <div key={s.num} className="relative group p-8 rounded-3xl border border-white/10 bg-white/[0.03] hover:border-white/20 transition-all duration-300 hover:-translate-y-1">
-                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${s.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
-                <div style={{ fontFamily: "'Oswald', sans-serif" }} className="text-6xl font-bold text-white/5 absolute top-6 right-6 select-none">{s.num}</div>
-                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${s.color} flex items-center justify-center mb-6 opacity-90`}>
-                  <Icon name={s.icon} size={22} className="text-white" />
+              <div key={s.num} style={{ background: C.green }} className="p-10 group hover:bg-[#3a5147] transition-colors duration-300">
+                <div style={{ color: C.beigeDark, ...serif, opacity: 0.2 }} className="text-5xl font-light mb-8">{s.num}</div>
+                <div style={{ color: C.beigeDark }} className="mb-5">
+                  <Icon name={s.icon} size={20} />
                 </div>
-                <h3 style={{ fontFamily: "'Oswald', sans-serif" }} className="text-2xl font-semibold mb-4 text-white">{s.title}</h3>
-                <p className="text-white/60 leading-relaxed mb-6 text-sm">{s.desc}</p>
+                <h3 style={{ color: C.beige, ...serif }} className="text-2xl font-light mb-4">{s.title}</h3>
+                <p style={{ color: C.beigeDark, ...sans }} className="text-sm leading-relaxed mb-6 font-light opacity-70">{s.desc}</p>
                 <div className="flex flex-wrap gap-2">
                   {s.tags.map((t) => (
-                    <span key={t} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs text-white/50">{t}</span>
+                    <span key={t} style={{ border: `1px solid ${C.beigeDark}30`, color: C.beigeDark, ...sans }} className="px-3 py-1 text-xs tracking-wider opacity-60">
+                      {t}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -232,43 +242,40 @@ const Index = () => {
       </section>
 
       {/* CASES */}
-      <section id="cases" className="py-28 relative overflow-hidden">
-        <div className="absolute right-0 top-1/2 w-[400px] h-[400px] rounded-full bg-[#7c3aed]/10 blur-[100px] pointer-events-none" />
-        <div className="container mx-auto px-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-px bg-[#ff6b35]" />
-            <span className="text-[#ff6b35] text-sm tracking-widest font-medium uppercase">Кейсы</span>
+      <section id="cases" style={{ background: C.beigeLight }} className="py-28">
+        <div className="container mx-auto px-8">
+          <div className="flex items-center gap-4 mb-10">
+            <div style={{ width: 40, height: 1, background: C.greenMid }} />
+            <span style={{ color: C.textMuted, ...sans }} className="text-xs tracking-[0.3em] uppercase">Кейсы</span>
           </div>
-          <h2 style={{ fontFamily: "'Oswald', sans-serif" }} className="text-4xl md:text-5xl font-bold mb-16 leading-tight">
-            РЕАЛЬНЫЕ{" "}
-            <span className="bg-gradient-to-r from-[#7c3aed] to-[#ff6b35] bg-clip-text text-transparent">РЕЗУЛЬТАТЫ</span>
+          <h2 style={{ color: C.green, ...serif }} className="text-5xl md:text-6xl font-light mb-16 leading-tight">
+            Реальные<br /><em className="not-italic font-semibold">результаты</em>
           </h2>
 
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { company: "Строительная компания", industry: "Строительство", problem: "Хаос в процессах, потеря клиентов, нет системы продаж", result: "Выручка выросла на 240% за 8 месяцев", metric: "+240%", accent: "#7c3aed" },
-              { company: "Сеть фитнес-клубов", industry: "Фитнес", problem: "Слабый маркетинг, высокий отток клиентов, нет стратегии", result: "Отток снизился на 60%, база клиентов выросла вдвое", metric: "×2", accent: "#ff6b35" },
-              { company: "IT-стартап", industry: "Технологии", problem: "Нет чёткого позиционирования, слабые продажи B2B", result: "Закрыто 3 крупных корпоративных контракта за квартал", metric: "3 контракта", accent: "#ec4899" },
-              { company: "Ресторанный холдинг", industry: "HoReCa", problem: "Операционные издержки выходили за рамки бюджета", result: "Себестоимость снижена на 35% без потери качества", metric: "-35%", accent: "#06b6d4" },
+              { company: "Строительная компания", industry: "Строительство", problem: "Хаос в процессах, потеря клиентов, нет системы продаж", result: "Выручка выросла на 240% за 8 месяцев", metric: "+240%" },
+              { company: "Сеть фитнес-клубов", industry: "Фитнес", problem: "Слабый маркетинг, высокий отток клиентов, нет стратегии", result: "Отток снизился на 60%, база клиентов выросла вдвое", metric: "×2" },
+              { company: "IT-стартап", industry: "Технологии", problem: "Нет чёткого позиционирования, слабые продажи B2B", result: "Закрыто 3 крупных корпоративных контракта за квартал", metric: "3 контракта" },
+              { company: "Ресторанный холдинг", industry: "HoReCa", problem: "Операционные издержки выходили за рамки бюджета", result: "Себестоимость снижена на 35% без потери качества", metric: "−35%" },
             ].map((c, i) => (
-              <div key={i} className="relative group p-8 rounded-3xl border border-white/10 bg-white/[0.03] hover:border-white/20 transition-all duration-300 overflow-hidden">
-                <div className="absolute top-0 left-0 right-0 h-0.5" style={{ background: `linear-gradient(to right, ${c.accent}, transparent)` }} />
+              <div key={i} style={{ background: C.beige, borderBottom: `3px solid ${C.green}` }} className="p-8 hover:shadow-md transition-shadow duration-300">
                 <div className="flex items-start justify-between mb-6">
                   <div>
-                    <div className="text-xs text-white/30 uppercase tracking-widest mb-1">{c.industry}</div>
-                    <div className="font-semibold text-white text-lg">{c.company}</div>
+                    <div style={{ color: C.textMuted, ...sans }} className="text-xs tracking-[0.25em] uppercase mb-2 opacity-60">{c.industry}</div>
+                    <div style={{ color: C.green, ...serif }} className="text-xl font-light">{c.company}</div>
                   </div>
-                  <div style={{ fontFamily: "'Oswald', sans-serif", backgroundImage: "linear-gradient(to right, #a78bfa, #ff6b35)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }} className="text-3xl font-bold">
-                    {c.metric}
+                  <div style={{ color: C.green, ...serif }} className="text-4xl font-semibold">{c.metric}</div>
+                </div>
+                <div style={{ borderTop: `1px solid ${C.beigeDark}` }} className="pt-5 grid grid-cols-2 gap-6">
+                  <div>
+                    <div style={{ color: C.textMuted, ...sans }} className="text-xs tracking-widest uppercase mb-2 opacity-50">Проблема</div>
+                    <p style={{ color: C.textMuted, ...sans }} className="text-sm leading-relaxed font-light">{c.problem}</p>
                   </div>
-                </div>
-                <div className="mb-4">
-                  <div className="text-xs text-white/30 uppercase tracking-wider mb-2">Проблема</div>
-                  <p className="text-white/60 text-sm leading-relaxed">{c.problem}</p>
-                </div>
-                <div className="pt-4 border-t border-white/10">
-                  <div className="text-xs text-white/30 uppercase tracking-wider mb-2">Результат</div>
-                  <p className="text-white font-medium text-sm">{c.result}</p>
+                  <div>
+                    <div style={{ color: C.textMuted, ...sans }} className="text-xs tracking-widest uppercase mb-2 opacity-50">Результат</div>
+                    <p style={{ color: C.green, ...sans }} className="text-sm leading-relaxed font-medium">{c.result}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -277,16 +284,14 @@ const Index = () => {
       </section>
 
       {/* REVIEWS */}
-      <section id="reviews" className="py-28 relative overflow-hidden">
-        <div className="absolute left-1/2 top-0 w-[600px] h-[300px] -translate-x-1/2 rounded-full bg-[#7c3aed]/10 blur-[100px] pointer-events-none" />
-        <div className="container mx-auto px-6">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-px bg-[#7c3aed]" />
-            <span className="text-[#a78bfa] text-sm tracking-widest font-medium uppercase">Отзывы</span>
+      <section id="reviews" style={{ background: C.green }} className="py-28">
+        <div className="container mx-auto px-8">
+          <div className="flex items-center gap-4 mb-10">
+            <div style={{ width: 40, height: 1, background: C.beigeDark, opacity: 0.5 }} />
+            <span style={{ color: C.beigeDark, ...sans }} className="text-xs tracking-[0.3em] uppercase opacity-60">Отзывы</span>
           </div>
-          <h2 style={{ fontFamily: "'Oswald', sans-serif" }} className="text-4xl md:text-5xl font-bold mb-16 leading-tight">
-            ЧТО ГОВОРЯТ{" "}
-            <span className="bg-gradient-to-r from-[#7c3aed] to-[#ff6b35] bg-clip-text text-transparent">КЛИЕНТЫ</span>
+          <h2 style={{ color: C.beige, ...serif }} className="text-5xl md:text-6xl font-light mb-16 leading-tight">
+            Что говорят<br /><em className="not-italic font-semibold">клиенты</em>
           </h2>
 
           <div className="grid md:grid-cols-3 gap-6">
@@ -295,17 +300,17 @@ const Index = () => {
               { name: "Марина К.", company: "Владелец сети фитнес-клубов", text: "Результат превзошёл ожидания. Маркетинговая стратегия, которую разработала Ксения, работает как часы. Клиентов стало заметно больше." },
               { name: "Дмитрий Р.", company: "Основатель IT-стартапа", text: "Профессионализм и глубокое понимание бизнеса. Помогла чётко сформулировать ценностное предложение и выйти на крупных корпоративных клиентов." },
             ].map((r, i) => (
-              <div key={i} className="p-8 rounded-3xl border border-white/10 bg-white/[0.03] hover:border-[#7c3aed]/30 transition-colors duration-300">
-                <div style={{ fontFamily: "'Oswald', sans-serif" }} className="text-5xl text-[#7c3aed]/30 leading-none mb-4 select-none">"</div>
-                <p className="text-white/70 leading-relaxed mb-8 text-sm">{r.text}</p>
-                <div className="flex items-center justify-between">
+              <div key={i} style={{ border: `1px solid ${C.beigeDark}20` }} className="p-8 hover:border-[#E8E2D9]/40 transition-colors duration-300">
+                <div style={{ color: C.beigeDark, ...serif, opacity: 0.2 }} className="text-7xl font-light leading-none mb-6 select-none">"</div>
+                <p style={{ color: C.beigeDark, ...sans }} className="text-sm leading-relaxed mb-8 font-light opacity-80">{r.text}</p>
+                <div style={{ borderTop: `1px solid ${C.beigeDark}15` }} className="pt-5 flex items-center justify-between">
                   <div>
-                    <div className="font-semibold text-white text-sm">{r.name}</div>
-                    <div className="text-xs text-white/40 mt-0.5">{r.company}</div>
+                    <div style={{ color: C.beige, ...serif }} className="text-base font-light">{r.name}</div>
+                    <div style={{ color: C.beigeDark, ...sans }} className="text-xs mt-0.5 opacity-50">{r.company}</div>
                   </div>
-                  <div className="flex gap-0.5">
+                  <div className="flex gap-1">
                     {[...Array(5)].map((_, j) => (
-                      <span key={j} className="text-[#ff6b35] text-sm">★</span>
+                      <span key={j} style={{ color: C.beigeDark, opacity: 0.5 }} className="text-sm">★</span>
                     ))}
                   </div>
                 </div>
@@ -316,20 +321,17 @@ const Index = () => {
       </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-28 relative overflow-hidden">
-        <div className="absolute left-0 top-0 w-[400px] h-[400px] rounded-full bg-[#ff6b35]/10 blur-[100px] pointer-events-none" />
-        <div className="absolute right-0 bottom-0 w-[400px] h-[400px] rounded-full bg-[#7c3aed]/10 blur-[100px] pointer-events-none" />
-        <div className="container mx-auto px-6">
+      <section id="contact" style={{ background: C.beigeLight }} className="py-28">
+        <div className="container mx-auto px-8">
           <div className="max-w-2xl mx-auto">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-px bg-[#ff6b35]" />
-              <span className="text-[#ff6b35] text-sm tracking-widest font-medium uppercase">Контакты</span>
+            <div className="flex items-center gap-4 mb-10">
+              <div style={{ width: 40, height: 1, background: C.greenMid }} />
+              <span style={{ color: C.textMuted, ...sans }} className="text-xs tracking-[0.3em] uppercase">Контакты</span>
             </div>
-            <h2 style={{ fontFamily: "'Oswald', sans-serif" }} className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-              ГОТОВЫ{" "}
-              <span className="bg-gradient-to-r from-[#7c3aed] to-[#ff6b35] bg-clip-text text-transparent">НАЧАТЬ?</span>
+            <h2 style={{ color: C.green, ...serif }} className="text-5xl md:text-6xl font-light mb-4 leading-tight">
+              Готовы<br /><em className="not-italic font-semibold">начать?</em>
             </h2>
-            <p className="text-white/50 mb-12 text-lg">
+            <p style={{ color: C.textMuted, ...sans }} className="text-base mb-12 font-light leading-relaxed">
               Оставьте заявку — разберу ваш бизнес и предложу конкретные шаги роста.
             </p>
 
@@ -342,7 +344,8 @@ const Index = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
-                    className="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#7c3aed]/60 transition-colors text-sm"
+                    style={{ background: C.beige, border: `1px solid ${C.beigeDark}`, color: C.green, ...sans }}
+                    className="w-full px-5 py-4 text-sm font-light placeholder-[#6b7c74]/50 focus:outline-none focus:border-[#2C3E35] transition-colors"
                   />
                   <input
                     type="tel"
@@ -350,7 +353,8 @@ const Index = () => {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     required
-                    className="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#7c3aed]/60 transition-colors text-sm"
+                    style={{ background: C.beige, border: `1px solid ${C.beigeDark}`, color: C.green, ...sans }}
+                    className="w-full px-5 py-4 text-sm font-light placeholder-[#6b7c74]/50 focus:outline-none focus:border-[#2C3E35] transition-colors"
                   />
                 </div>
                 <textarea
@@ -358,38 +362,40 @@ const Index = () => {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   rows={4}
-                  className="w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#7c3aed]/60 transition-colors resize-none text-sm"
+                  style={{ background: C.beige, border: `1px solid ${C.beigeDark}`, color: C.green, ...sans }}
+                  className="w-full px-5 py-4 text-sm font-light placeholder-[#6b7c74]/50 focus:outline-none focus:border-[#2C3E35] transition-colors resize-none"
                 />
                 <button
                   type="submit"
-                  className="w-full py-5 rounded-2xl bg-gradient-to-r from-[#7c3aed] to-[#ff6b35] text-white font-semibold text-base hover:opacity-90 transition-all hover:scale-[1.02] shadow-xl shadow-[#7c3aed]/20"
+                  style={{ background: C.green, color: C.beige, ...sans }}
+                  className="w-full py-5 text-sm tracking-widest uppercase font-medium hover:opacity-90 transition-opacity"
                 >
                   Отправить заявку
                 </button>
               </form>
             ) : (
-              <div className="text-center py-16 rounded-3xl border border-white/10 bg-white/[0.03]">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#7c3aed] to-[#ff6b35] flex items-center justify-center mx-auto mb-6">
-                  <Icon name="Check" size={28} className="text-white" />
+              <div style={{ background: C.beige, border: `1px solid ${C.beigeDark}` }} className="text-center py-16">
+                <div style={{ background: C.green }} className="w-14 h-14 flex items-center justify-center mx-auto mb-6">
+                  <Icon name="Check" size={22} className="text-[#E8E2D9]" />
                 </div>
-                <h3 style={{ fontFamily: "'Oswald', sans-serif" }} className="text-2xl font-bold text-white mb-2">Заявка отправлена!</h3>
-                <p className="text-white/50">Свяжусь с вами в течение 24 часов</p>
+                <h3 style={{ color: C.green, ...serif }} className="text-2xl font-light mb-2">Заявка отправлена</h3>
+                <p style={{ color: C.textMuted, ...sans }} className="text-sm font-light">Свяжусь с вами в течение 24 часов</p>
               </div>
             )}
 
-            <div className="flex flex-wrap gap-6 mt-10 pt-10 border-t border-white/10">
+            <div className="flex flex-wrap gap-8 mt-12 pt-10" style={{ borderTop: `1px solid ${C.beigeDark}` }}>
               {[
                 { icon: "Mail", label: "Email", value: "ksenia@ksolving.ru" },
                 { icon: "MessageCircle", label: "Telegram", value: "@ksolving" },
                 { icon: "Instagram", label: "Instagram", value: "@ksolving" },
               ].map((c) => (
-                <div key={c.label} className="flex items-center gap-3 text-sm">
-                  <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                    <Icon name={c.icon} size={16} className="text-[#a78bfa]" />
+                <div key={c.label} className="flex items-center gap-3">
+                  <div style={{ color: C.greenMid }}>
+                    <Icon name={c.icon} size={16} />
                   </div>
                   <div>
-                    <div className="text-white/30 text-xs">{c.label}</div>
-                    <div className="text-white/70">{c.value}</div>
+                    <div style={{ color: C.textMuted, ...sans }} className="text-xs tracking-widest uppercase opacity-50">{c.label}</div>
+                    <div style={{ color: C.green, ...sans }} className="text-sm font-light mt-0.5">{c.value}</div>
                   </div>
                 </div>
               ))}
@@ -399,12 +405,12 @@ const Index = () => {
       </section>
 
       {/* FOOTER */}
-      <footer className="py-8 border-t border-white/5">
-        <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <span style={{ fontFamily: "'Oswald', sans-serif" }} className="text-lg tracking-widest text-white/40">
-            K<span className="text-[#ff6b35]/60">SOLVING</span>
+      <footer style={{ background: C.green, borderTop: `1px solid ${C.greenMid}` }} className="py-8">
+        <div className="container mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <img src={LOGO_GREEN} alt="KSolving" className="h-6 object-contain" />
+          <span style={{ color: C.beigeDark, ...sans }} className="text-xs tracking-widest opacity-40">
+            © 2024 Ксения Чеканова · Все права защищены
           </span>
-          <span className="text-white/20 text-sm">© 2024 Ксения Чеканова · Все права защищены</span>
         </div>
       </footer>
     </div>
